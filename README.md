@@ -1,2 +1,2 @@
 # SQL Practice Modules
-Practice exercises from SQLZOO and MSSQL SERVER.
+Practice exercises from SQLZOO and using MSSQL SERVER.
