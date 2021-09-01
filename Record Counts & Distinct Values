@@ -1,0 +1,89 @@
+                                                Excercise using GROUP BY & DISTINCT COUNT
+
+1. What is the frequency of values in the rating column in the film table?
+SELECT
+  rating,
+  COUNT(*) as Frequency
+FROM
+  dvd_rentals.film_list
+GROUP BY
+  rating
+ORDER BY
+  Frequency DESC;
+ 
+ 
+2. What are the 5 most frequent rating and category combinations in the film_list table?
+SELECT
+  rating,
+  category,
+  COUNT(*) AS frequency
+FROM
+  dvd_rentals.film_list
+GROUP BY
+  rating,
+  category
+ORDER BY
+  frequency DESC
+LIMIT
+  5;
+  
+  
+3. Which actor_id has the most number of unique film_id records in the dvd_rentals.film_actor table?
+SELECT
+  actor_id,
+  COUNT(DISTINCT film_id) AS film_id
+FROM
+  dvd_rentals.film_actor
+GROUP BY
+  actor_id
+ORDER BY
+  film_id DESC;
+  
+  
+4. How many distinct fid values are there for the 3rd most common price value in the dvd_rentals.nicer_but_slower_film_list table?
+SELECT
+  price,
+  COUNT(DISTINCT fid)
+FROM
+  dvd_rentals.nicer_but_slower_film_list
+GROUP BY
+  1
+ORDER BY
+  2 DESC;
+  
+  
+5. How many unique country_id values exist in the dvd_rentals.city table?
+SELECT 
+  COUNT(country_id) as Unique_Countries
+FROM 
+  dvd_rentals.country
+
+
+6. What percentage of overall total_sales does the Sports category make up in the dvd_rentals.sales_by_film_category table?
+SELECT
+  category,
+  ROUND(100 * total_sales :: NUMERIC / SUM(total_sales) OVER (),2
+  ) AS percentage
+FROM
+  dvd_rentals.sales_by_film_category
+
+
+7. What percentage of unique fid values are in the Children category in the dvd_rentals.film_list table?
+SELECT
+  category,
+  ROUND(
+    100 * COUNT(DISTINCT fid) :: NUMERIC / SUM(COUNT(DISTINCT(fid)) OVER (), 2
+  ) AS Percentage
+FROM
+  dvd_rentals.film_list
+GROUP BY
+  category
+ORDER BY
+  category;
+  
+  
+  
+  
+  
+  
+  
